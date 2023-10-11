@@ -1,8 +1,8 @@
 import { Router } from "express";
-import signUpRouter from "./usersRoutes.js";
+import signRouter from "./usersRoutes.js";
 
 const router = Router();
 
-router.use(signUpRouter);
+router.use(signRouter);
 
 export default router;
