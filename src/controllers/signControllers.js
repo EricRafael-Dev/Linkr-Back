@@ -13,7 +13,7 @@ export async function postSignIn(req, res) {
 
     try {
         //console.log(process.env.DATABASE_URL)
-        const user = await db.query("SELECT * FROM users WHERE email = $1;", [email]);
+        const user = await db.query(`SELECT * FROM users WHERE email = $1;`, [email]);
 
         if (user.rowCount === 0) return res.status(401).send({message:"User not registered!"});
 
@@ -22,7 +22,7 @@ export async function postSignIn(req, res) {
 
         const token = uuid();
 
-        await db.query('INSERT INTO sessions (token, "userId") VALUES ($1, $2)', [token, user.rows[0].id]);
+        await db.query(`INSERT INTO sessions (token, "userId") VALUES ($1, $2);`, [token, user.rows[0].id]);  
 
         return res.status(200).send({ userId: user.rows[0].id, token: token, username: user.rows[0].username, url: user.rows[0].pictureUrl });
 

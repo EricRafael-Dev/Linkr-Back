@@ -8,7 +8,7 @@ export async function authValidate(req, res, next) {
 
     try {
         //  buscar na tabela sessions o token que veio na req.
-        const session = await getToken(token)
+        const session = await getToken(token) 
 
         //  se não houver token, ou não for igual
         if (session.rowCount === 0) {
